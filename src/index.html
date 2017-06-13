@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="testApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Toys company</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body ui-view ng-controller="toysCtrl">
+
+    <div class="page-wrapper">
+        <input type="search" ng-model="nameFilter" placeholder="Search toys"/>
+        <table>
+            <thead>
+            <tr>
+                <th class="head-toyslist">List toys</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="toys in toysList | orderBy: 'name' | filter: nameFilter">
+                <td><img src="images/{{toys.img}}.png" alt="{{toys.img}}" width="50" height="50"/></td>
+                <td><a ui-sref="detail({id:{{toys.id}}})">{{toys.name}}</a></td>
+                <td>{{toys.price}} usd</td>
+            </tr>
+            </tbody>
+        </table>
+        <product-detail-view></product-detail-view>
+    </div>
+
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-ui-router.min.js"></script>
+    <script src="index.js"></script>
+    <script src="js/controllers/toys-app.js"></script>
+    <script src="js/controllers/product-detail-ctrl.js"></script>
+    <script src="js/directives/product-detail-dir.js"></script>
+</body>
+</html>
